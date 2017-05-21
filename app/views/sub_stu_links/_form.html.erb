@@ -1,0 +1,22 @@
+<%= form_tag(subject_sub_stu_links_path) do %>
+
+    <% if @sub_stu_link && @sub_stu_link.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@sub_stu_link.errors.count, 'error') %> prohibited this sub_stu_link from being saved:</h2>
+
+          <ul>
+            <% @sub_stu_link.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= select_tag 'student_id', options_from_collection_for_select(Student.all, :id, :name)%>
+    </div>
+
+  <div class="actions">
+    <%= submit_tag %>
+  </div>
+<% end %>
