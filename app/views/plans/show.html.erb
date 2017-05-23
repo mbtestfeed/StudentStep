@@ -1,19 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Plan name:</strong>
   <%= @plan.name %>
 </p>
 
 <p>
   <strong>Subject:</strong>
   <%= @plan.subject.name %> - <%= @plan.subject.teacher.name %>
-</p>
 
-<p>
   <strong>Date:</strong>
   <%= @plan.plan_date %>
 </p>
+
+<%= link_to 'Tasks', plan_tasks_path(@plan) %> #TODO: restyle as appropriate
 
 <%= link_to 'Edit', edit_plan_path(@plan) %> |
 <%= link_to 'Back', plans_path %>
