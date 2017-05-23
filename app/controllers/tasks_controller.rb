@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_plan
 
   # GET /tasks
   # GET /tasks.json
@@ -26,9 +27,16 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
 
+    @task.plan = @plan
+
+    if @plan.tasks
+      @task.parent_task = @plan.tasks.last
+    end
+
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+
+        format.html { redirect_to plan_tasks_path(@plan), notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
         format.js
       else
@@ -71,5 +79,9 @@ class TasksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
       params.require(:task).permit(:type, :text)
+    end
+
+    def set_plan
+      @plan = Plan.find(params[:plan_id])
     end
 end
