@@ -10,6 +10,7 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.json
   def show
+    @subjects_taken = Subject.joins(:students).where(students: {id: params[:id]})
   end
 
   # GET /students/new

@@ -5,5 +5,27 @@
   <%= @student.name %>
 </p>
 
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th><Teacher></Teacher></th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @subjects_taken.each do |subject| %>
+    <tr>
+      <td><%= subject.name %></td>
+      <td><%= subject.teacher.name %></td>
+      <td>Link to Today's Work</td> <!-- #TODO: Make this a link to a page of all the tasks for this day -->
+      <td>Archived work</td> <!-- #TODO: Make this a link to a page of all the archived days work. -->
+    </tr>
+  <% end %>
+
+  </tbody>
+</table>
+
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Back', students_path %>
