@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :plans do
     resources :tasks
   end
-  resources :students
+  resources :students do
+    resources :plans # TODO: restricted as necessary
+  end
   resources :subjects do
     resources :sub_stu_links, only: [:new, :create, :destroy]
     resources :plans, only: [:new, :create, :destroy] # TODO: Does this need to exist?
