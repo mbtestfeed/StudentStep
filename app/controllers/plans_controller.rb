@@ -10,6 +10,10 @@ class PlansController < ApplicationController
   # GET /plans/1
   # GET /plans/1.json
   def show
+    # TODO: get plan for student(from URL/auth)/subject(from iteration)/planfortoday(from subjects.plans.plan_date), direct to student/plan/show
+
+    return false if !params[:student_id]
+    @student = Student.find(params[:student_id])
   end
 
   # GET /plans/new

@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
-
+  <% unless @student.blank? %>
+    Working.
+  <% end %>
 <p>
   <strong>Plan name:</strong>
   <%= @plan.name %>
