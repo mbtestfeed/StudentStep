@@ -19,7 +19,7 @@
   </thead>
 
   <tbody>
-  <% @subject.students.sort_by{|student| student.name}.each do |student| %>
+  <% @subject.students.order(:name).each do |student| %>
       <tr>
         <td><%= link_to student.name, student %></td>
         <td><!--%= link_to 'Remove student', sub_stu_link, method: :delete, data: { confirm: 'Are you sure?' } %--></td>
@@ -34,6 +34,37 @@
   </tfoot>
 </table>
 
+<br/>
 
+<table>
+  <thead>
+  <tr>
+    <th>Plans:</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% unless @subject.plans.blank? %>
+    <% @subject.plans.order(:plan_date).reverse_order.each do |plan| %>
+        <tr>
+          <td><%= plan.plan_date %></td>
+          <td><%= link_to plan.name, plan %></td>
+
+        </tr>
+    <% end %>
+  <% else %>
+    <td>No plans made yet.</td>
+  <% end %>
+  </tbody>
+
+  <tfoot>
+  <tr>
+    <td><strong><%= link_to 'Add Plan', new_subject_plan_path(@subject) %></strong></td>
+  </tr>
+  </tfoot>
+</table>
+
+<br/>
 <%= link_to 'Edit', edit_subject_path(@subject) %> |
 <%= link_to 'Back', subjects_path %>
