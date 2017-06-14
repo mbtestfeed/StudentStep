@@ -12,7 +12,7 @@
   <%= @plan.subject.name %> - <%= @plan.subject.teacher.name %>
 
   <strong>Date:</strong>
-  <%= @plan.plan_date %>
+  <%= @plan.plan_date.strftime('%a %d/%b/%Y') %>
 </p>
 
 <%= link_to 'Tasks', plan_tasks_path(@plan) %> #TODO: restyle as appropriate
