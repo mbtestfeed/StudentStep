@@ -48,7 +48,7 @@
   <% unless @subject.plans.blank? %>
     <% @subject.plans.order(:plan_date).reverse_order.each do |plan| %>
         <tr>
-          <td><%= plan.plan_date %></td>
+          <td><%= plan.plan_date.strftime('%a %d/%b/%Y') %></td>
           <td><%= link_to plan.name, plan %></td>
 
         </tr>
