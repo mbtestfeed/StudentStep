@@ -28,9 +28,10 @@
 <%= @next = @tasks.where(parent_task: @next).first %>
 <%= @next.task_type + ' ' + @next.text %>
 </br>
+<%= button_tag 'Test Button', type: 'button', onclick: 'next_task()' do %><%end%>
 
-
-<%= link_to 'Tasks', plan_tasks_path(@plan) %> #TODO: restyle as appropriate
+</br></br>
+<%= link_to 'Tasks', plan_tasks_path(@plan) %> #TODO: restyle as appropriate, ?only show if teacher nested?
 
 <%= link_to 'Edit', edit_plan_path(@plan) %> |
 <%= link_to 'Back', plans_path %>
