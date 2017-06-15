@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
   <% unless @student.blank? %>
-    Working.
+    Working. #TODO: Remove. Test data.
+  <% end %>
+</br>
+  <% unless @tasks.blank? %>
+    <%= @tasks.count %> Tasks exist. #TODO: Remove. Test data.
   <% end %>
 <p>
   <strong>Plan name:</strong>
@@ -14,6 +18,17 @@
   <strong>Date:</strong>
   <%= @plan.plan_date.strftime('%a %d/%b/%Y') %>
 </p>
+
+<%= @first = @tasks.where(parent_task: nil).first %>
+<%= @first.task_type %>
+</br>
+<%= @next = @tasks.where(parent_task: @first).first %>
+<%= @next.task_type + ' ' + @next.text %>
+</br>
+<%= @next = @tasks.where(parent_task: @next).first %>
+<%= @next.task_type + ' ' + @next.text %>
+</br>
+
 
 <%= link_to 'Tasks', plan_tasks_path(@plan) %> #TODO: restyle as appropriate
 
