@@ -17,18 +17,23 @@
 
   <strong>Date:</strong>
   <%= @plan.plan_date.strftime('%a %d/%b/%Y') %>
+
 </p>
 
+<div class = first>
 <%= @first = @tasks.where(parent_task: nil).first %>
 <%= @first.task_type %>
-</br>
-<%= @next = @tasks.where(parent_task: @first).first %>
-<%= @next.task_type + ' ' + @next.text %>
+</div>
+ <div>
+   <%= @next = @tasks.where(parent_task: @first).first %>
+   <%= @next.task_type + ' ' + @next.text %>
+ </div>
+
 </br>
 <%= @next = @tasks.where(parent_task: @next).first %>
 <%= @next.task_type + ' ' + @next.text %>
 </br>
-<%= button_tag 'Test Button', type: 'button', onclick: 'next_task()' do %><%end%>
+<%= button_tag 'Test Button', type: 'button', onclick: 'next_task(@first.text)' do %><%end%>
 
 </br></br>
 <%= link_to 'Tasks', plan_tasks_path(@plan) %> #TODO: restyle as appropriate, ?only show if teacher nested?

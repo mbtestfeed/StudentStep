@@ -1,0 +1,20 @@
+/**
+ * Created by mbtestfeed on 15/06/17.
+ */
+
+function next_task(test) {
+    console.log("WONK");
+    console.log(test);
+
+
+    var grok = '<%= @tasks.where(parent_task: @first) %>';
+    console.log(grok);
+
+    var newDiv = document.createElement('div');
+    newDiv.className = 'current';
+    newDiv.innerHTML = grok;
+    document.getElementsByClassName('first')[0].append(newDiv);
+
+
+
+}
