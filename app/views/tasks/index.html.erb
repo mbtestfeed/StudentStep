@@ -47,7 +47,7 @@
       <%= f.text_area :text %>
     <br/>
       <%= f.label :text, 'Task type:' %><br/>
-      <%= f.select :task_type, ['Description', 'Single-line input', 'Multi-line input'] %>
+      <%= f.select :task_type, Task::TASKS %>
     </div>
 
     <div class="actions">

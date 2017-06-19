@@ -23,11 +23,15 @@
 
 
 <% prev = nil %>
-<% while(task = @tasks.where(parent_task: prev).first) %>
+<% while(task = @tasks.where(parent_task: prev).first) do %>
     <div>
       <%= task.task_type + ': ' + task.text %>
       <% prev = task %>
-      <% if task.task_type == 'single_line_task' %>
+      <% unless task.task_type == 'Description' %>
+          <% entry = Entry.new %>
+
+
+      <% end %>
     </div>
 <% end %>
 
