@@ -15,7 +15,7 @@ class PlansController < ApplicationController
     return false if !params[:student_id]
     @student = Student.find(params[:student_id])
 
-    @tasks = Task.where(plan_id: params[:id])
+    @tasks = @plan.tasks
   end
 
   # GET /plans/new

@@ -4,4 +4,6 @@ class Task < ApplicationRecord
 
   has_many :tasks
   has_many :entries
+
+  validates :task_type, inclusion: {}
 end
