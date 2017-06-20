@@ -1,0 +1,1 @@
+$('#new_task_entry<%= @entry.task.id %>').replaceWith("<%= escape_javascript render(partial: 'plans/entry', task: task) %>");

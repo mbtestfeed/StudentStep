@@ -25,12 +25,15 @@ class EntriesController < ApplicationController
   # POST /entries.json
   def create
     @entry = Entry.new(entry_params)
+    @task = @entry.task
 
     respond_to do |format|
       if @entry.save
+        format.js { render :create }
         format.html { redirect_to @entry, notice: 'Entry was successfully created.' }
         format.json { render :show, status: :created, location: @entry }
       else
+        format.js { render :new }
         format.html { render :new }
         format.json { render json: @entry.errors, status: :unprocessable_entity }
       end
@@ -69,6 +72,6 @@ class EntriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def entry_params
-      params.require(:entry).permit(:name, :entry_json)
+      params.require(:entry).permit(:student_id, :task_id, :plan_id, :student_response)
     end
 end
