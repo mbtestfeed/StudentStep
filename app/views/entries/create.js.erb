@@ -1,4 +1,9 @@
-$('#new_task_entry<%= @task.id %>')
+<!-- replace partial with blank -->
+$('#task<%= @task.id %>')
     .replaceWith("<%= escape_javascript render(partial: 'plans/entry', task: @task) %>");
+<!-- set partial contents to entry contents -->
 
-alert("Hi???!?");
+
+
+<!-- disable field -->
+  $('#task<%= @task.id %>').find('.editable').prop('disabled', 'disabled');

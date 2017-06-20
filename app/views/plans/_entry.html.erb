@@ -1,3 +1,4 @@
+<div id='task<%= @task.id%>' class='uncompleted'>
 <% entry = Entry.new(student_id: params[:student_id], task: @task, plan: @plan) %>
 <%= form_for(entry, remote: true) do |f| %>
 
@@ -6,10 +7,11 @@
     <%= f.hidden_field :plan_id %>
 
     <% if @task.task_type == 'Single-line input' %>
-        <%= f.text_field :student_response %>
+        <%= f.text_field :student_response, class: 'editable', disabled: false %>
     <% elsif @task.task_type == 'Multi-line input' %>
-        <%= f.text_area :student_response %>
+        <%= f.text_area :student_response, class: 'editable', disabled: false %>
     <% end %>
 
     <%= f.submit %>
 <% end %>
+</div>

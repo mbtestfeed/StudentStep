@@ -28,9 +28,9 @@
       <%= @task.task_type + ': ' + @task.text %>
       <% prev = @task %>
       <% unless @task.task_type == 'Description' %>
-          <div id='new_task_entry<%= @task.id%>'>
+
             <%= render 'entry' %>
-          </div>
+
       <% end %>
     </div>
 <% end %>
