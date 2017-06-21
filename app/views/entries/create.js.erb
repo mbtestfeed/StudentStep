@@ -1,9 +1,10 @@
 <!-- replace partial with blank -->
 $('#task<%= @task.id %>')
     .replaceWith("<%= escape_javascript render(partial: 'plans/entry', task: @task) %>");
+
 <!-- set partial contents to entry contents -->
 
-
+ $('#task<%= @task.id %>').find('.editable').prop('value', '<%= Entry.where({task: @task, student: @entry.student}).last.student_response %>');
 
 <!-- disable field -->
   $('#task<%= @task.id %>').find('.editable').prop('disabled', 'disabled');
