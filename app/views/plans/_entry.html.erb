@@ -6,10 +6,12 @@
     <%= f.hidden_field :task_id %>
     <%= f.hidden_field :plan_id %>
 
+      <% if (Entry.where({student: @student, task: @task}).last) then @student_response = Entry.where({student: @student, task: @task}).last.student_response end %>
+
     <% if @task.task_type == 'Single-line input' %>
-        <%= f.text_field :student_response, class: 'editable', disabled: false %>
+        <%= f.text_field :student_response, class: 'editable', disabled: false, value: @student_response %>
     <% elsif @task.task_type == 'Multi-line input' %>
-        <%= f.text_area :student_response, class: 'editable', disabled: false %>
+        <%= f.text_area :student_response, class: 'editable', disabled: false, value: @student_response %>
     <% end %>
 
     <%= f.submit %>
