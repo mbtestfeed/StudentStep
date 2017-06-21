@@ -8,3 +8,12 @@ $('#task<%= @task.id %>')
 
 <!-- disable field -->
   $('#task<%= @task.id %>').find('.editable').prop('disabled', 'disabled');
+
+
+
+<!-- Take @child_tasks of @task and find @next_task   -->
+
+<% if @next_task %>
+  console.log('<%= @next_task %>');
+  $('#task<%= @task.id %>')
+<% end %>

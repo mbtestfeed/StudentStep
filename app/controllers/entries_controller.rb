@@ -26,6 +26,10 @@ class EntriesController < ApplicationController
   def create
     @entry = Entry.new(entry_params)
     @task = @entry.task
+    @child_tasks = Task.where(parent_task_id: @task.id)
+    if @child_tasks.last
+      @next_task = @child_tasks.last
+    end
 
     respond_to do |format|
       if @entry.save
