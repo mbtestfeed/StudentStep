@@ -24,15 +24,13 @@
 
 <% prev = nil %>
 <% while(@task = @tasks.where(parent_task: prev).first) do %>
-    <div>
-      <%= @task.task_type + ': ' + @task.text %>
+
+
       <% prev = @task %>
-      <% unless @task.task_type == 'Description' %>
 
             <%= render 'entry' %>
 
-      <% end %>
-    </div>
+
 <% end %>
 
 </br>

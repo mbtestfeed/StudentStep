@@ -14,6 +14,7 @@ $('#task<%= @task.id %>')
 <!-- Take @child_tasks of @task and find @next_task   -->
 
 <% if @next_task %>
-  console.log('<%= @next_task %>');
-  $('#task<%= @task.id %>')
+
+  $('#task<%= @task.id%>').after("<%= escape_javascript render(partial: 'plans/entry', task: @next_task) %>"); //Doesn't produce correct task..?
+
 <% end %>
