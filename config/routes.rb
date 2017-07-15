@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :entries
   resources :plans do
     resources :tasks
+    resources :entries
   end
   resources :students do
     resources :plans # TODO: restricted as necessary

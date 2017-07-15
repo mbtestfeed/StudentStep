@@ -16,6 +16,6 @@ $('#task<%= @task.id %>')
 <% if @next_task %>
   console.log("<%= @next_task.text %>");
   $('#task<%= @task.id%>').after("<%= escape_javascript render('plans/entry', task: @next_task) %>"); //Doesn't produce correct task..?
-    
+
 console.log("<%= @next_task.text %>");
 <% end %>
