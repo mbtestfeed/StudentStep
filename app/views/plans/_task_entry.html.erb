@@ -1,0 +1,7 @@
+
+<% if task.entries.where(student: @student).present? %>
+    <%= render 'completed_task_entry', entry: task.entries.where(student: @student).last %>
+<% else %>
+
+    <%= render 'incomplete_task_entry', task: task %>
+<% end %>

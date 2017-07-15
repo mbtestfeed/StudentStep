@@ -23,12 +23,10 @@
 
 
 <% prev = nil %>
-<% while(@task = @tasks.where(parent_task: prev).first) do %>
+<% tasks_in_plan(@plan).each do |task| %>
+    <%= render('task_entry', student: @student, task: task) %>
 
-
-      <% prev = @task %>
-
-            <%= render 'entry', task: @task %>
+    <% break unless task.entries.where(student: @student).present? %>
 
 
 <% end %>

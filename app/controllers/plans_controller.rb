@@ -13,9 +13,10 @@ class PlansController < ApplicationController
     # TODO: get plan for student(from URL/auth)/subject(from iteration)/planfortoday(from subjects.plans.plan_date), direct to student/plan/show
 
     return false if !params[:student_id]
+    
     @student = Student.find(params[:student_id])
 
-    @tasks = @plan.tasks
+
   end
 
   # GET /plans/new

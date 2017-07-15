@@ -1,21 +1,13 @@
 <!-- replace partial with blank -->
-$('#task<%= @task.id %>')
-    .replaceWith("<%= escape_javascript render('plans/entry', task: @task) %>");
-
-<!-- set partial contents to entry contents -->
-
- $('#task<%= @task.id %>').find('.editable').prop('value', '<%= Entry.where({task: @task, student: @entry.student}).last.student_response %>');
-
-<!-- disable field -->
-  $('#task<%= @task.id %>').find('.editable').prop('disabled', 'disabled');
-
-
+console.log("<%= @entry.task.id %>");
+$('#task<%= @entry.task.id %>')
+    .replaceWith("<%= escape_javascript render('plans/completed_task_entry', student: @student, entry: @entry) %>");
 
 <!-- Take @child_tasks of @task and find @next_task   -->
 
 <% if @next_task %>
   console.log("<%= @next_task.text %>");
-  $('#task<%= @task.id%>').after("<%= escape_javascript render('plans/entry', task: @next_task) %>"); //Doesn't produce correct task..?
+  $('#task<%= @entry.task.id%>').after("<%= escape_javascript render('plans/incomplete_task_entry', task: @next_task) %>"); //Doesn't produce correct task..?
 
 console.log("<%= @next_task.text %>");
 <% end %>

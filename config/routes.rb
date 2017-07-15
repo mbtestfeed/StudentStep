@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     resources :entries
   end
   resources :students do
-    resources :plans # TODO: restricted as necessary
+    resources :plans do # TODO: restricted as necessary
+      resources :entries #TODO: THIS IS GROSS STOP IT.
+    end
   end
   resources :subjects do
     resources :sub_stu_links, only: [:new, :create, :destroy]

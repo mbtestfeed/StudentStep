@@ -1,0 +1,27 @@
+<%= puts('>>>>>>>>>>>>>>>>>>I REACHED INCOMPLETE') %>
+<div id="task<%= task.id %>">
+<%= task.task_type + ': ' + task.text %>
+<% entry = Entry.new(student_id: @student, task: task, plan: task.plan) %>
+<%= form_for(entry, remote: true) do |f| %>
+
+
+
+    <%= f.hidden_field :student_id %>
+    <%= f.hidden_field :task_id %>
+    <%= f.hidden_field :plan_id %>
+
+
+
+    <% if task.task_type == 'Single-line input' %>
+        <%= f.text_field :student_response, class: 'editable', disabled: false, value: @student_response %>
+    <% elsif task.task_type == 'Multi-line input' %>
+        <%= f.text_area :student_response, class: 'editable', disabled: false, value: @student_response %>
+    <% else %>
+        <%= f.text_field :student_response, hidden: 'true', value: 'I MADE A BLANK!' %>
+    <% end %>
+
+
+    <%= f.submit %>
+
+<% end %>
+</div>

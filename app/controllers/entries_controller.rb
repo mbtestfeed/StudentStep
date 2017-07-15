@@ -1,5 +1,6 @@
 class EntriesController < ApplicationController
   before_action :set_entry, only: [:show, :edit, :update, :destroy]
+  before_action :set_student, only: [:show, :create]
 
   # GET /entries
   # GET /entries.json
@@ -10,6 +11,7 @@ class EntriesController < ApplicationController
   # GET /entries/1
   # GET /entries/1.json
   def show
+
   end
 
   # GET /entries/new
@@ -25,11 +27,11 @@ class EntriesController < ApplicationController
   # POST /entries.json
   def create
     @entry = Entry.new(entry_params)
-    @task = @entry.task
-    @child_tasks = Task.where(parent_task_id: @task.id)
-    if @child_tasks.last
-      @next_task = @child_tasks.last
-    end
+
+    @entry.student = @student
+    byebug
+    @next_task = Task.find_by_parent_task_id(@entry.task.id)
+
 
     respond_to do |format|
       if @entry.save
@@ -72,6 +74,10 @@ class EntriesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_entry
       @entry = Entry.find(params[:id])
+    end
+
+    def set_student
+      @student = Student.find(id: params[:student_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
