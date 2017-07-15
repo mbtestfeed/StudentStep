@@ -1,20 +1,20 @@
-<div id='task<%= @task.id%>' class='uncompleted'>
+<div id='task<%= task.id%>' class='uncompleted'>
 
-    <%= @task.task_type + ': ' + @task.text %>
-    <% unless @task.task_type == 'Description' %>
+    <%= task.task_type + ': ' + task.text %>
+    <% unless task.task_type == 'Description' %>
 
-      <% entry = Entry.new(student_id: params[:student_id], task: @task, plan: @plan) %>
+      <% entry = Entry.new(student_id: params[:student_id], task: task, plan: @plan) %>
       <%= form_for(entry, remote: true) do |f| %>
 
         <%= f.hidden_field :student_id %>
         <%= f.hidden_field :task_id %>
         <%= f.hidden_field :plan_id %>
 
-        <% if (Entry.where({student: @student, task: @task}).last) then @student_response = Entry.where({student: @student, task: @task}).last.student_response end %>
+        <% if (Entry.where({student: @student, task: task}).last) then @student_response = Entry.where({student: @student, task: task}).last.student_response end %>
 
-        <% if @task.task_type == 'Single-line input' %>
+        <% if task.task_type == 'Single-line input' %>
             <%= f.text_field :student_response, class: 'editable', disabled: false, value: @student_response %>
-        <% elsif @task.task_type == 'Multi-line input' %>
+        <% elsif task.task_type == 'Multi-line input' %>
             <%= f.text_area :student_response, class: 'editable', disabled: false, value: @student_response %>
         <% end %>
 
